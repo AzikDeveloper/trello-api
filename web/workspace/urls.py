@@ -7,5 +7,6 @@ urlpatterns = [
     path('<int:w_id>/members', views.WorkspaceMembersListCreateView.as_view(), name='workspace-members'),
     path('<int:w_id>/members/<int:u_id>', views.RemoveMemberFromWorkspaceView.as_view(),
          name='remove-member-from-workspace'),
-    path('<int:w_id>/boards', views.WorkspaceBoardsListView.as_view(), name='workspace-boards')
+    path('<int:w_id>/boards', views.WorkspaceBoardsListView.as_view(), name='workspace-boards'),
+    path('load-test/<int:query_count>', views.load_test, name='load-test')
 ]

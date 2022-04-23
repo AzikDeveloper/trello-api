@@ -9,10 +9,13 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from board.models import Board
+from card_items.models import *
 from board.serializers import BoardsListSerializer
 from rest_framework.parsers import MultiPartParser, JSONParser
 from django.db.models import Q
 from django.db.utils import IntegrityError
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 class MyWorkspacesListCreateView(ListCreateAPIView):
@@ -91,3 +94,12 @@ class WorkspaceBoardsListView(ListAPIView, BaseWorkspaceMixin):
 
     def filter_queryset(self, queryset):
         return queryset.filter(workspace=self.get_workspace())
+
+
+@api_view(["GET"])
+def load_test(request, query_count):
+    datas = []
+    for i in range(query_count):
+        datas.append(serializers.WorkspaceListSerializer(Workspace.objects.all(), many=True).data)
+
+    return Response(data=datas)
