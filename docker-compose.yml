@@ -8,7 +8,6 @@ services:
       - "8000"
     links:
       - postgres:postgres
-      - redis:redis
     volumes:
       - web-static:/usr/src/app/static
     env_file: .env
