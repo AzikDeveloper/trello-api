@@ -12,7 +12,7 @@ services:
       - web-static:/usr/src/app/static
       - web-media:/usr/src/app/media
     env_file: .env
-    command: /usr/local/bin/gunicorn core.wsgi:application -w 3 -b :8000
+    command: /usr/local/bin/gunicorn core.wsgi:application -w 4 -b :8000
 
   nginx:
     restart: always
